@@ -47,7 +47,11 @@ def c(x):
 pass
 
 def main():
-    args = docopt(__doc__)
+    #args = docopt(__doc__)
+    args = { "<yaml-config>" : "" , "--devices" : "0" }
+    args[ "<checkpoint>" ] = "model/model.pth"
+    images = [ "data/set_01/_1018843.JPG" ]
+    args[ "<images>" ] = images
     config_file = args["<yaml-config>"] or "config/wireframe.yaml"
     C.update(C.from_yaml(filename=config_file))
     M.update(C.model)
