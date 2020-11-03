@@ -44,7 +44,7 @@ sm.set_array([])
 
 def c(x):
     return sm.to_rgba(x)
-
+pass
 
 def main():
     args = docopt(__doc__)
@@ -66,6 +66,8 @@ def main():
         print("Let's use", torch.cuda.device_count(), "GPU(s)!")
     else:
         print("CUDA is not available")
+    pass
+
     device = torch.device(device_name)
     checkpoint = torch.load(args["<checkpoint>"], map_location=device)
 
@@ -110,6 +112,7 @@ def main():
                 "mode": "testing",
             }
             H = model(input_dict)["preds"]
+        pass
 
         lines = H["lines"][0].cpu().numpy() / 128 * im.shape[:2]
         scores = H["score"][0].cpu().numpy()
@@ -118,8 +121,10 @@ def main():
                 lines = lines[:i]
                 scores = scores[:i]
                 break
+            pass
+        pass
 
-        # postprocess lines to remove overlapped lines
+        # post process lines to remove overlapped lines
         diag = (im.shape[0] ** 2 + im.shape[1] ** 2) ** 0.5
         nlines, nscores = postprocess(lines, scores, diag * 0.01, 0, False)
 
@@ -139,7 +144,11 @@ def main():
             plt.savefig(imname.replace(".png", f"-{t:.02f}.svg"), bbox_inches="tight")
             plt.show()
             plt.close()
+        pass
+    pass
 
+pass
 
 if __name__ == "__main__":
     main()
+pass
